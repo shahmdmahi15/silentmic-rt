@@ -21,12 +21,15 @@ export const metadata: Metadata = {
     "rust audio",
     "zero allocation",
   ],
-  metadataBase: new URL("https://shahmdmahi.dpdns.org"),
+  metadataBase: new URL("https://silentmic-rt.shahmdmahi.dpdns.org"),
+  alternates: {
+    canonical: "https://silentmic-rt.shahmdmahi.dpdns.org",
+  },
   openGraph: {
     title: "SilentMic-RT | Sub-3ms Hard Real-Time Neural Voice Isolator",
     description:
       "Eliminate room noise, crying babies, barking dogs, typing clicks, and room echo in sub-3ms latency with zero cloud transmission.",
-    url: "https://shahmdmahi.dpdns.org",
+    url: "https://silentmic-rt.shahmdmahi.dpdns.org",
     siteName: "SilentMic-RT",
     images: [
       {
@@ -63,6 +66,7 @@ export default function RootLayout({
       {
         "@type": "SoftwareApplication",
         "name": "SilentMic-RT",
+        "url": "https://silentmic-rt.shahmdmahi.dpdns.org",
         "operatingSystem": "Linux, Windows, macOS",
         "applicationCategory": "MultimediaApplication",
         "offers": {
