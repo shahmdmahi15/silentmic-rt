@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pysilentmic"
+version = "0.1.0"
+authors = [
+    { name = "Shah Md. Mahi", email = "shahmdmahi15@gmail.com" }
+]
+description = "Python bindings for SilentMic-RT: Deterministic, Zero-Allocation Sub-3ms Hard Real-Time Neural Voice Isolator"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.8"
+keywords = ["audio", "dsp", "noise-suppression", "real-time", "voice-isolation", "pipewire"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Rust",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+dependencies = [
+    "numpy>=1.20.0"
+]
+
+[project.urls]
+Homepage = "https://shahmdmahi.dpdns.org"
+Repository = "https://github.com/shahmdmahi15/silentmic-rt"
+Documentation = "https://github.com/shahmdmahi15/silentmic-rt#python-quickstart"

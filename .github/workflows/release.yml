@@ -1,0 +1,116 @@
+name: SilentMic-RT Release & Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build & Package Binaries (${{ matrix.target }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            artifact_name: silentmic-rt-linux-x86_64.tar.gz
+            bin_path: target/release/silentmic-rt
+            lib_path: target/release/libsilentmic.so
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            artifact_name: silentmic-rt-macos-x86_64.tar.gz
+            bin_path: target/release/silentmic-rt
+            lib_path: target/release/libsilentmic.dylib
+          - os: macos-14
+            target: aarch64-apple-darwin
+            artifact_name: silentmic-rt-macos-arm64.tar.gz
+            bin_path: target/release/silentmic-rt
+            lib_path: target/release/libsilentmic.dylib
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            artifact_name: silentmic-rt-windows-x86_64.zip
+            bin_path: target/release/silentmic-rt.exe
+            lib_path: target/release/silentmic.dll
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build Release Binaries & C Dynamic Library
+        run: cargo build --release --locked
+
+      - name: Package Linux/macOS Artifacts
+        if: matrix.os != 'windows-latest'
+        run: |
+          mkdir -p package/include package/bin package/lib
+          cp ${{ matrix.bin_path }} package/bin/
+          cp ${{ matrix.lib_path }} package/lib/
+          cp include/silentmic.h package/include/
+          cp README.md LICENSE package/
+          tar -czvf ${{ matrix.artifact_name }} -C package .
+
+      - name: Package Windows Artifacts
+        if: matrix.os == 'windows-latest'
+        shell: bash
+        run: |
+          mkdir -p package/include package/bin package/lib
+          cp ${{ matrix.bin_path }} package/bin/
+          cp ${{ matrix.lib_path }} package/lib/
+          cp include/silentmic.h package/include/
+          cp README.md LICENSE package/
+          cd package && 7z a ../${{ matrix.artifact_name }} *
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ matrix.artifact_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-cargo:
+    name: Publish to Crates.io
+    runs-on: ubuntu-latest
+    needs: build-and-release
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Publish to crates.io
+        run: cargo publish --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+  publish-pypi:
+    name: Build & Publish pysilentmic to PyPI
+    runs-on: ubuntu-latest
+    needs: build-and-release
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install build tools
+        run: pip install --upgrade build twine
+
+      - name: Build Wheel & Sdist
+        working-directory: python
+        run: python -m build
+
+      - name: Publish to PyPI
+        working-directory: python
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/*

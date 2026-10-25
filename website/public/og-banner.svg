@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050811" />
+      <stop offset="50%" stop-color="#090E1A" />
+      <stop offset="100%" stop-color="#022C22" />
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34D399" />
+      <stop offset="50%" stop-color="#22D3EE" />
+      <stop offset="100%" stop-color="#60A5FA" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)" />
+
+  <!-- Grid overlay -->
+  <g stroke="#10B981" stroke-opacity="0.08" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100" />
+    <line x1="0" y1="200" x2="1200" y2="200" />
+    <line x1="0" y1="300" x2="1200" y2="300" />
+    <line x1="0" y1="400" x2="1200" y2="400" />
+    <line x1="0" y1="500" x2="1200" y2="500" />
+    <line x1="200" y1="0" x2="200" y2="630" />
+    <line x1="400" y1="0" x2="400" y2="630" />
+    <line x1="600" y1="0" x2="600" y2="630" />
+    <line x1="800" y1="0" x2="800" y2="630" />
+    <line x1="1000" y1="0" x2="1000" y2="630" />
+  </g>
+
+  <!-- Glow orb -->
+  <circle cx="950" cy="280" r="240" fill="#10B981" fill-opacity="0.12" filter="blur(60px)" />
+
+  <!-- Badge -->
+  <rect x="80" y="80" width="360" height="42" rx="21" fill="#064E3B" fill-opacity="0.6" stroke="#10B981" stroke-width="1.5" />
+  <text x="105" y="107" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#34D399" letter-spacing="1.5">HARD REAL-TIME AUDIO DSP</text>
+
+  <!-- Title -->
+  <text x="80" y="210" font-family="system-ui, sans-serif" font-size="76" font-weight="900" fill="#FFFFFF">SilentMic<tspan fill="url(#textGrad)">-RT</tspan></text>
+
+  <!-- Subtitle -->
+  <text x="80" y="280" font-family="system-ui, sans-serif" font-size="30" font-weight="500" fill="#94A3B8">Deterministic, Zero-Allocation Sub-3ms Neural Voice Isolator</text>
+
+  <!-- Spec Pills -->
+  <rect x="80" y="340" width="180" height="48" rx="12" fill="#0F172A" stroke="#334155" stroke-width="1" />
+  <text x="105" y="371" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#22D3EE">⚡ 1.33ms Hop</text>
+
+  <rect x="280" y="340" width="220" height="48" rx="12" fill="#0F172A" stroke="#334155" stroke-width="1" />
+  <text x="305" y="371" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#34D399">🛡️ Zero Allocation</text>
+
+  <rect x="520" y="340" width="200" height="48" rx="12" fill="#0F172A" stroke="#334155" stroke-width="1" />
+  <text x="545" y="371" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#A78BFA">🌊 32-Band ERB</text>
+
+  <!-- Author Card -->
+  <line x1="80" y1="460" x2="1120" y2="460" stroke="#334155" stroke-width="1" />
+  <text x="80" y="520" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="#F8FAFC">Engineered by Shah Md. Mahi</text>
+  <text x="80" y="555" font-family="system-ui, sans-serif" font-size="16" font-weight="500" fill="#64748B">Lead Audio DSP &amp; Real-Time Systems Architect • https://shahmdmahi.dpdns.org</text>
+</svg>

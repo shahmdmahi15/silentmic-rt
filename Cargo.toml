@@ -1,0 +1,41 @@
+[package]
+name = "silentmic-rt"
+version = "0.1.0"
+edition = "2021"
+authors = ["Shah Md. Mahi <shahmdmahi15@gmail.com>"]
+description = "Deterministic, Zero-Allocation Sub-3ms Hard Real-Time Neural Voice Isolator & Virtual Microphone Driver"
+license = "MIT"
+repository = "https://github.com/shahmdmahi15/silentmic-rt"
+homepage = "https://shahmdmahi.dpdns.org"
+keywords = ["audio", "dsp", "noise-suppression", "real-time", "pipewire"]
+categories = ["multimedia::audio", "algorithms"]
+readme = "README.md"
+
+[lib]
+name = "silentmic"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "silentmic-rt"
+path = "src/bin/main.rs"
+
+[dependencies]
+realfft = "3.3"
+rubato = "0.15"
+hound = "3.5"
+clap = { version = "4.5", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"
+byteorder = "1.5"
+
+[dev-dependencies]
+approx = "0.5"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
+debug = false
