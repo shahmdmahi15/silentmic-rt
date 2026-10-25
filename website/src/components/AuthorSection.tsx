@@ -122,6 +122,17 @@ export default function AuthorSection() {
                   </a>
                 ))}
               </div>
+
+              {/* Ecosystem Cross-Navigation */}
+              <div className="mt-6 pt-6 border-t border-slate-800/60 flex flex-wrap items-center justify-between gap-4">
+                <span className="text-xs font-mono text-slate-400">Engineering Portfolio:</span>
+                <div className="flex flex-wrap items-center gap-3 text-xs">
+                  <a href="https://rt-mpbc.shahmdmahi.dpdns.org" target="_blank" rel="noreferrer" className="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 border border-slate-800 hover:border-cyan-500/40 hover:text-white transition-colors">RT-MPBC (Multi-Physics)</a>
+                  <a href="https://omnidrop.shahmdmahi.dpdns.org" target="_blank" rel="noreferrer" className="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 border border-slate-800 hover:border-cyan-500/40 hover:text-white transition-colors">OmniDrop (P2P Mesh)</a>
+                  <a href="https://silentmic-rt.shahmdmahi.dpdns.org" className="px-2.5 py-1 rounded-lg bg-emerald-950/60 text-emerald-300 border border-emerald-800 font-semibold">SilentMic-RT (Neural Audio)</a>
+                  <a href="https://omnibrain.shahmdmahi.dpdns.org" target="_blank" rel="noreferrer" className="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 border border-slate-800 hover:border-purple-500/40 hover:text-white transition-colors">OmniBrain (Web Memory)</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
